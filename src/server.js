@@ -12,6 +12,8 @@ const prisma = new PrismaClient();
 app.use(cors());            // Permite front local y Render
 app.use(express.json());    // JSON body
 
+
+
 /* ----------------------- Utils ----------------------- */
 function httpError(res, status, msg) {
   return res.status(status).json({ error: msg });
@@ -36,7 +38,6 @@ app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
 /* ======================================================
    M I S I Ó N   3 :   U S E R S / T A S K S
-   (usa Prisma ORM contra tus tablas User/Task/Category)
 ====================================================== */
 
 // USERS
@@ -141,8 +142,6 @@ app.delete("/api/tasks/:id", async (req, res) => {
 
 /* ======================================================
    P R O Y E C T O   2 ( M E D I X ) :  READ-ONLY
-   Estas rutas leen tus tablas SQL (patient/doctor/appointment).
-   Ya confirmaste que existen y tienen datos.
 ====================================================== */
 
 app.get("/api/medix/patients", async (_req, res) => {
@@ -202,6 +201,14 @@ app.get("/api/medix/appointments", async (_req, res) => {
     httpError(res, 500, "No se pudieron cargar citas");
   }
 });
+
+app.get('/', (req, res) => {
+  res.type('text/plain').send(
+    'API Medix activa.\n' +
+    'Usa /api/health para ver el estado o /api/users, /api/tasks, /api/medix/* para endpoints.'
+  );
+});
+
 
 /* ----------------------- Start ----------------------- */
 app.listen(PORT, () => {
