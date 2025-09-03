@@ -1,0 +1,20 @@
+{
+  "name": "gestion-citas-api",
+  "version": "1.0.0",
+  "description": "API Express + Prisma (Users/Tasks + Medix read-only)",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.15.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "prisma": "^6.15.0"
+  }
+}
